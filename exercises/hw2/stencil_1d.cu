@@ -9,8 +9,8 @@ using namespace std;
 
 __global__ void stencil_1d(int *in, int *out) {
     __shared__ int temp[FIXME];
-    int gindex = threadIdx.x + blockIdx.x * blockDim.x;
-    int lindex = FIXME;
+    int gindex = threadIdx.x + blockIdx.x * blockDim.x; // global index on GPU grid
+    int lindex = FIXME; // local index
 
     // Read input elements into shared memory
     temp[lindex] = in[gindex];
