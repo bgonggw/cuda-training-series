@@ -37,7 +37,7 @@ __global__ void mmul(const float *A, const float *B, float *C, int ds) {
     for (int i = 0; i < ds/block_size; i++) {
 
       // Load data into shared memory
-      As[threadIdx.y][threadIdx.x] = A[idy * ds + (i * block_size + threadIdx.x)];
+      As[threadIdx.y][threadIdx.x] = A[idy * ds + (i * block_size + threadIdx.x)]; // assumes block size is the same as tile size in Cuda
       Bs[threadIdx.y][threadIdx.x] = B[(i * block_size + threadIdx.y) * ds + idx];
 
       // Synchronize
